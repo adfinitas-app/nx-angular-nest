@@ -4,7 +4,7 @@
     "defaultBase": "master"
   },
   "implicitDependencies": {
-    "angular.json": "*",
+    "workspace.json": "*",
     "package.json": {
       "dependencies": "*",
       "devDependencies": "*"
@@ -16,9 +16,17 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "accessToken": "OTZlNDgyNzQtMWM5Ni00MDhkLTk1ODQtYzE5MWUzNzM0NDEwfHJlYWQtd3JpdGU=",
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "e2e"
+        ],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
@@ -28,7 +36,9 @@
     },
     "front-e2e": {
       "tags": [],
-      "implicitDependencies": ["front"]
+      "implicitDependencies": [
+        "front"
+      ]
     },
     "api": {
       "tags": []

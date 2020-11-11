@@ -1,0 +1,27 @@
+name: nx-angular-nest
+region: fra
+services:
+- build_command: yarn nx build api --prod
+  environment_slug: node-js
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: adfinitas-app/nx-angular-nest
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: api
+  routes:
+  - path: /api
+  run_command: node dist/apps/api/main.js
+static_sites:
+- build_command: yarn nx build front --prod
+  environment_slug: node-js
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: adfinitas-app/nx-angular-nest
+  name: front
+  output_dir: dist/apps/front
+  routes:
+  - path: /
