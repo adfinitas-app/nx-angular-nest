@@ -22,4 +22,6 @@ async function bootstrap() {
   });
 }
 
+Logger.log(process.env);
+
 bootstrap();
