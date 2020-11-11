@@ -5,13 +5,17 @@
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { environment } from './environments/environment';
 
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const globalPrefix = process.env.GLOBAL_PREFIX || 'api';
-  app.setGlobalPrefix(globalPrefix);
+  let globalPrefix = '';
+  if (!environment.production) {
+    globalPrefix = environment.production ? '' : 'api';
+    app.setGlobalPrefix(globalPrefix);
+  }
   const port = process.env.PORT || 3333;
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
