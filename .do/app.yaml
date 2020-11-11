@@ -14,8 +14,12 @@ services:
   routes:
   - path: /api
   run_command: node dist/apps/api/main.js
+  envs:
+    - key: GLOBAL_PREFIX
+      value: /
+      scope: RUN_TIME
 static_sites:
-- build_command: yarn nx build front --prod
+- build_command: yarn nx build front --prod && mkdir -p public && mv dist/apps/front/* public && rm -rf dist
   environment_slug: node-js
   github:
     branch: main
